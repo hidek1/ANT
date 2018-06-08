@@ -44,16 +44,30 @@ class GameScene: SKScene {
         bNode.physicsBody?.collisionBitMask = 0b0001
         lightNode.physicsBody?.collisionBitMask = 0b0001
         
+        let Texture1 = SKTexture(imageNamed: "ant.png")
+        Texture1.filteringMode = .nearest
+        let Texture2 = SKTexture(imageNamed: "ant2.png")
+        Texture2.filteringMode = .nearest
+        let Texture3 = SKTexture(imageNamed: "ant4.png")
+        Texture3.filteringMode = .nearest
+        
+        let anim = SKAction.animate(with: [Texture1, Texture2, Texture1, Texture3], timePerFrame: 0.1)
+        let flap = SKAction.repeatForever(anim)
         for i in 0..<10 {
-            aNode.append(childNode(withName: "ANode") as! SKSpriteNode)
+//            aNode.append(childNode(withName: "ANode") as! SKSpriteNode)
+            aNode.append(SKSpriteNode(imageNamed: "ant.png"))
             aNode[i].physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100))
             aNode[i].physicsBody?.affectedByGravity = false
-            aNode[i].position = CGPoint(x:200, y:0);
+            aNode[i].position = CGPoint(x:100, y:70*i);
+            aNode[i].xScale = 0.08
+            aNode[i].yScale = 0.08
             aNode[i].physicsBody?.friction = 0.0
             angle = self.randomFloatValue(0, high: 360) * CGFloat.pi / 180.0
             value = 80.0
             vector = CGVector(dx: (value * CGFloat(cos(Double(angle)))), dy: (value * CGFloat(sin(Double(angle)))))
             aNode[i].physicsBody?.applyImpulse(vector!)
+            
+            aNode[i].run(flap)
             //回転のアクションを実行する。
             let rotateAction1 = SKAction.rotate( toAngle: angle - CGFloat(Double.pi), duration: 0)
             aNode[i].run(rotateAction1)
@@ -61,7 +75,9 @@ class GameScene: SKScene {
             aNode[i].physicsBody?.categoryBitMask = 0b0001
             aNode[i].physicsBody?.collisionBitMask = 0b0001
             lightNode.physicsBody?.contactTestBitMask = aNode[i].physicsBody!.categoryBitMask | bNode.physicsBody!.categoryBitMask
+            self.addChild(aNode[i])
         }
+        print(aNode)
         
         //テクスチャアトラスからボタン作成
 //        let button = SKSpriteNode(texture: SKTextureAtlas(named: "UIParts").textureNamed("button"))
