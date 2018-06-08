@@ -17,6 +17,11 @@
 		71BA569B20C7C4A9000147A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71BA569920C7C4A9000147A1 /* LaunchScreen.storyboard */; };
 		71BA56A620C7C4A9000147A1 /* ANTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BA56A520C7C4A9000147A1 /* ANTTests.swift */; };
 		71BA56B120C7C4A9000147A1 /* ANTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BA56B020C7C4A9000147A1 /* ANTUITests.swift */; };
+		71BA56BF20C82CBC000147A1 /* ant.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BA56BE20C82CBC000147A1 /* ant.png */; };
+		71BA56C120C8FBD0000147A1 /* ant2.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BA56C020C8FBD0000147A1 /* ant2.png */; };
+		71BA56C320C8FBD5000147A1 /* ant3.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BA56C220C8FBD5000147A1 /* ant3.png */; };
+		71BA56C520C90142000147A1 /* ant4.png in Resources */ = {isa = PBXBuildFile; fileRef = 71BA56C420C90142000147A1 /* ant4.png */; };
+		71E2432F20C96C58006F086D /* antbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 71E2432E20C96C58006F086D /* antbutton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,11 @@
 		71BA56AC20C7C4A9000147A1 /* ANTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ANTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BA56B020C7C4A9000147A1 /* ANTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANTUITests.swift; sourceTree = "<group>"; };
 		71BA56B220C7C4A9000147A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71BA56BE20C82CBC000147A1 /* ant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ant.png; path = ../../../../Downloads/867224_png_wi/ant.png; sourceTree = "<group>"; };
+		71BA56C020C8FBD0000147A1 /* ant2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ant2.png; path = ../../../../Downloads/867224_png_wi/ant2.png; sourceTree = "<group>"; };
+		71BA56C220C8FBD5000147A1 /* ant3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ant3.png; path = ../../../../Downloads/867224_png_wi/ant3.png; sourceTree = "<group>"; };
+		71BA56C420C90142000147A1 /* ant4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ant4.png; path = ../../../../Downloads/867224_png_wi/ant4.png; sourceTree = "<group>"; };
+		71E2432E20C96C58006F086D /* antbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = antbutton.png; path = ../../../antbutton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +118,11 @@
 				71BA568E20C7C4A8000147A1 /* Actions.sks */,
 				71BA569020C7C4A8000147A1 /* GameScene.swift */,
 				71BA569220C7C4A8000147A1 /* GameViewController.swift */,
+				71BA56BE20C82CBC000147A1 /* ant.png */,
+				71E2432E20C96C58006F086D /* antbutton.png */,
+				71BA56C020C8FBD0000147A1 /* ant2.png */,
+				71BA56C220C8FBD5000147A1 /* ant3.png */,
+				71BA56C420C90142000147A1 /* ant4.png */,
 				71BA569420C7C4A8000147A1 /* Main.storyboard */,
 				71BA569720C7C4A9000147A1 /* Assets.xcassets */,
 				71BA569920C7C4A9000147A1 /* LaunchScreen.storyboard */,
@@ -239,10 +254,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				71BA569620C7C4A8000147A1 /* Main.storyboard in Resources */,
+				71BA56C320C8FBD5000147A1 /* ant3.png in Resources */,
+				71BA56C520C90142000147A1 /* ant4.png in Resources */,
+				71E2432F20C96C58006F086D /* antbutton.png in Resources */,
 				71BA568D20C7C4A8000147A1 /* GameScene.sks in Resources */,
 				71BA569820C7C4A9000147A1 /* Assets.xcassets in Resources */,
+				71BA56BF20C82CBC000147A1 /* ant.png in Resources */,
 				71BA569B20C7C4A9000147A1 /* LaunchScreen.storyboard in Resources */,
 				71BA568F20C7C4A8000147A1 /* Actions.sks in Resources */,
+				71BA56C120C8FBD0000147A1 /* ant2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
