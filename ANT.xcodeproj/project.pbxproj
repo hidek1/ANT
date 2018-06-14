@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7198D3F420CD043F00066B83 /* donut.png in Resources */ = {isa = PBXBuildFile; fileRef = 7198D3F320CD043F00066B83 /* donut.png */; };
 		7198D3FC20CE3CDB00066B83 /* donutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7198D3FB20CE3CDB00066B83 /* donutButton.png */; };
+		7198D3FE20CF6C9F00066B83 /* chalk.png in Resources */ = {isa = PBXBuildFile; fileRef = 7198D3FD20CF6C9F00066B83 /* chalk.png */; };
 		71BA568B20C7C4A8000147A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BA568A20C7C4A8000147A1 /* AppDelegate.swift */; };
 		71BA568D20C7C4A8000147A1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 71BA568C20C7C4A8000147A1 /* GameScene.sks */; };
 		71BA568F20C7C4A8000147A1 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 71BA568E20C7C4A8000147A1 /* Actions.sks */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		7198D3F320CD043F00066B83 /* donut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = donut.png; path = "../../../../Downloads/1027629_png_wi 2/donut.png"; sourceTree = "<group>"; };
 		7198D3FB20CE3CDB00066B83 /* donutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = donutButton.png; path = ../../../donutButton.png; sourceTree = "<group>"; };
+		7198D3FD20CF6C9F00066B83 /* chalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chalk.png; path = ../../../chalk.png; sourceTree = "<group>"; };
 		71BA568720C7C4A8000147A1 /* ANT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ANT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BA568A20C7C4A8000147A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71BA568C20C7C4A8000147A1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				71BA56BE20C82CBC000147A1 /* ant.png */,
 				7198D3FB20CE3CDB00066B83 /* donutButton.png */,
 				71E2432E20C96C58006F086D /* antbutton.png */,
+				7198D3FD20CF6C9F00066B83 /* chalk.png */,
 				7198D3F320CD043F00066B83 /* donut.png */,
 				71BA56C020C8FBD0000147A1 /* ant2.png */,
 				71BA56C220C8FBD5000147A1 /* ant3.png */,
@@ -266,6 +269,7 @@
 				71BA568D20C7C4A8000147A1 /* GameScene.sks in Resources */,
 				7198D3F420CD043F00066B83 /* donut.png in Resources */,
 				71BA569820C7C4A9000147A1 /* Assets.xcassets in Resources */,
+				7198D3FE20CF6C9F00066B83 /* chalk.png in Resources */,
 				71BA56BF20C82CBC000147A1 /* ant.png in Resources */,
 				71BA569B20C7C4A9000147A1 /* LaunchScreen.storyboard in Resources */,
 				7198D3FC20CE3CDB00066B83 /* donutButton.png in Resources */,

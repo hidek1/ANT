@@ -23,6 +23,8 @@ class GameViewController: UIViewController {
                 
                 // Present the scene
                 view.presentScene(scene)
+                print(scene.frame,#function)
+
             }
             
             view.ignoresSiblingOrder = true
@@ -30,6 +32,11 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(self.view.frame,#function)
+//        print()
     }
 
     override var shouldAutorotate: Bool {
