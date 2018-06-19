@@ -29,6 +29,10 @@ class GameScene: SKScene {
     let defaults = UserDefaults.standard
     var time: Int = 0
     var antCount: Int = 0
+    var twButton: SKSpriteNode!
+    var fbButton: SKSpriteNode!
+    var touchButtonName:String? = ""
+
     
     //保存座標
     var savePos:(x:CGFloat, y:CGFloat)!
@@ -91,7 +95,7 @@ class GameScene: SKScene {
             aNode.append(SKSpriteNode(imageNamed: "ant.png"))
             aNode[i].physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 500, height: 100))
             aNode[i].physicsBody?.affectedByGravity = false
-            aNode[i].position = CGPoint(x:100, y:70*i);
+            aNode[i].position = CGPoint(x:100, y:40*i);
             aNode[i].xScale = 0.08
             aNode[i].yScale = 0.08
             aNode[i].physicsBody?.friction = 0.0
@@ -132,6 +136,33 @@ class GameScene: SKScene {
         button3.zPosition = 1
         button3.name = "button3"
         self.addChild(button3)
+        
+        twButton = childNode(withName: "twButton") as! SKSpriteNode
+        twButton.name = "twitter_button"
+        
+        fbButton = childNode(withName: "fbButton") as! SKSpriteNode
+        fbButton.name = "facebook_button"
+    }
+    
+    func socialButtonTapped(social:String){
+        
+        // share画面で表示するメッセージを格納
+        var message = String()
+        if social == "twitter" {
+            message = "Twitter Share"
+        } else {
+            message = "Facebook Share"
+        }
+        
+        // userinfoに情報(socialの種類とmessage)を格納
+        let userInfo = ["social": social.data(using: String.Encoding.utf8, allowLossyConversion: true)!,"message": message.data(using: String.Encoding.utf8, allowLossyConversion: true)!]
+        
+        print(userInfo)
+        
+        // userInfoも含めて、"socialShare"という名称の通知をここで飛ばす
+//        NotificationCenter.default.postNotificationName("socialShare", object: nil, userInfo: userInfo)
+//        NotificationCenter.default.post(name: , object: <#T##Any?#>, userInfo: <#T##[AnyHashable : Any]?#>)
+        NotificationCenter.default.post(name:  NSNotification.Name(rawValue: "socialShare"), object: nil, userInfo: userInfo)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -183,6 +214,13 @@ class GameScene: SKScene {
                     defaults.set(antCount, forKey: "antCount")
                     break
                 }
+            }
+            if self.atPoint(location).name == "twitter_button" {
+                socialButtonTapped(social: "twitter")
+//                print("a")
+            } else if self.atPoint(location).name == "facebook_button" {
+                socialButtonTapped(social: "facebook")
+//                print("b")
             }
             if self.atPoint(location).name == "button" {
                 bNode.isHidden = false

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7109F9DD20D8CDD40075BCA7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7109F9DC20D8CDD40075BCA7 /* Social.framework */; };
+		7109F9DF20D8CDDB0075BCA7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7109F9DE20D8CDDB0075BCA7 /* Accounts.framework */; };
 		7198D3F420CD043F00066B83 /* donut.png in Resources */ = {isa = PBXBuildFile; fileRef = 7198D3F320CD043F00066B83 /* donut.png */; };
 		7198D3FC20CE3CDB00066B83 /* donutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7198D3FB20CE3CDB00066B83 /* donutButton.png */; };
 		7198D3FE20CF6C9F00066B83 /* chalk.png in Resources */ = {isa = PBXBuildFile; fileRef = 7198D3FD20CF6C9F00066B83 /* chalk.png */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7109F9DC20D8CDD40075BCA7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		7109F9DE20D8CDDB0075BCA7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		7198D3F320CD043F00066B83 /* donut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = donut.png; path = "../../../../Downloads/1027629_png_wi 2/donut.png"; sourceTree = "<group>"; };
 		7198D3FB20CE3CDB00066B83 /* donutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = donutButton.png; path = ../../../donutButton.png; sourceTree = "<group>"; };
 		7198D3FD20CF6C9F00066B83 /* chalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chalk.png; path = ../../../chalk.png; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7109F9DF20D8CDDB0075BCA7 /* Accounts.framework in Frameworks */,
+				7109F9DD20D8CDD40075BCA7 /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +102,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7109F9DB20D8CDD40075BCA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7109F9DE20D8CDDB0075BCA7 /* Accounts.framework */,
+				7109F9DC20D8CDD40075BCA7 /* Social.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		71BA567E20C7C4A8000147A1 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +118,7 @@
 				71BA56A420C7C4A9000147A1 /* ANTTests */,
 				71BA56AF20C7C4A9000147A1 /* ANTUITests */,
 				71BA568820C7C4A8000147A1 /* Products */,
+				7109F9DB20D8CDD40075BCA7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
