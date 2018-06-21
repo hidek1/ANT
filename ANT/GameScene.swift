@@ -193,7 +193,7 @@ class GameScene: SKScene {
         defaults.set(time, forKey: "time")
         for i in 0..<aNode.count {
             if aNode[i].name == "fast" {
-                value = 200.0
+                value = 250.0
                 vector = CGVector(dx: (-value * CGFloat(cos(aNode[i].zRotation))), dy: (-value * CGFloat(sin(aNode[i].zRotation))))
                 aNode[i].physicsBody?.velocity = vector!
             } else {
