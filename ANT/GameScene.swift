@@ -55,11 +55,14 @@ class GameScene: SKScene {
         backgroundNode.physicsBody = SKPhysicsBody(edgeLoopFrom: backgroundNode.frame)
         backgroundNode.physicsBody?.isDynamic = false
         backgroundNode.physicsBody?.friction = 0
-        bNode = childNode(withName: "BNode") as! SKSpriteNode
+        bNode = SKSpriteNode(imageNamed: "donut.png")
+        bNode.size = CGSize.init(width: 150, height: 150)
+        bNode.position = CGPoint(x: 0, y: 0)
         bNode.physicsBody = SKPhysicsBody(rectangleOf: bNode.frame.size)
         bNode.physicsBody?.affectedByGravity = false
         bNode.isHidden = true
         bNode.physicsBody?.isDynamic = false
+        addChild(bNode)
         
         cNode = childNode(withName: "CNode") as! SKSpriteNode
         cNode.physicsBody = SKPhysicsBody(rectangleOf: cNode.frame.size)
@@ -95,6 +98,7 @@ class GameScene: SKScene {
         let flap = SKAction.repeatForever(anim)
         for i in 0..<10 {
             aNode.append(SKSpriteNode(imageNamed: "ant.png"))
+            aNode[i].name = "normal"
             aNode[i].physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 500, height: 100))
             aNode[i].physicsBody?.affectedByGravity = false
             aNode[i].position = CGPoint(x:100, y:40*i);
@@ -187,6 +191,18 @@ class GameScene: SKScene {
         let secs = (span - hourSec * hours - minutes * minuteSec)
         timeLabel.text = "プレイ時間\(hours)時間 \(minutes)分 \(secs)秒" // 今回追加
         defaults.set(time, forKey: "time")
+        for i in 0..<aNode.count {
+            if aNode[i].name == "fast" {
+                value = 200.0
+                vector = CGVector(dx: (-value * CGFloat(cos(aNode[i].zRotation))), dy: (-value * CGFloat(sin(aNode[i].zRotation))))
+                aNode[i].physicsBody?.velocity = vector!
+            } else {
+                value = 80.0
+                vector = CGVector(dx: (-value * CGFloat(cos(aNode[i].zRotation))), dy: (-value * CGFloat(sin(aNode[i].zRotation))))
+                aNode[i].physicsBody?.velocity = vector!
+                
+            }
+        }
     }
     
     
@@ -197,6 +213,10 @@ class GameScene: SKScene {
     
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for i in 0..<aNode.count {
+            aNode[i].name = "normal"
+        }
+        lineNode.removeFromParent()
         lineNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: lineNode.lineWidth, height: 5000))
         let touch = touches.first!
         firstPoint = touch.location(in: self)
@@ -229,14 +249,17 @@ class GameScene: SKScene {
                     bNode.isHidden = false
                     bNode.physicsBody?.categoryBitMask = UInt32(1)
                     for i in 0..<aNode.count {
-                        let radian = atan2(-aNode[i].position.x + bNode.position.x, -aNode[i].position.y + bNode.position.y)
+                        let radian = atan2(bNode.position.x - aNode[i].position.x, bNode.position.y - aNode[i].position.y)
                         value = 80.0
-                        vector = CGVector(dx: (value * CGFloat(cos(radian))), dy: (value * CGFloat(sin(radian))))
-                        aNode[i].physicsBody?.applyImpulse(vector!)
-                        aNode[i].physicsBody?.velocity = vector!
+                            vector = CGVector(dx: (-value * CGFloat(cos(radian))), dy: (-value * CGFloat(sin(radian))))
+//                            aNode[i].physicsBody?.applyImpulse(vector!)
+//                            aNode[i].physicsBody?.velocity = vector!
                         //回転のアクションを実行する。
-                        let rotateAction1 = SKAction.rotate( toAngle: radian - CGFloat(Double.pi), duration: 0)
+                        let rotateAction1 = SKAction.rotate( byAngle: radian, duration: 0)
                         aNode[i].run(rotateAction1)
+                        let rotateAction2 = SKAction.move(to: CGPoint(x: 0,y: 0), duration: 1.5)
+                            aNode[i].run(rotateAction2)
+                        
                         savePos = (aNode[i].position.x, aNode[i].position.y)
                         aNode[i].physicsBody?.categoryBitMask = UInt32(i+5)
                         aNode[i].physicsBody?.collisionBitMask = 0xFFFFFFFF
@@ -256,6 +279,7 @@ class GameScene: SKScene {
                     let anim = SKAction.animate(with: [Texture1, Texture2, Texture1, Texture3], timePerFrame: 0.1)
                     let flap = SKAction.repeatForever(anim)
                     aNode.append(SKSpriteNode(imageNamed: "ant.png"))
+                    aNode[aNode.count-1].name = "normal"
                     aNode[aNode.count-1].physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 500, height: 100))
                     aNode[aNode.count-1].physicsBody?.affectedByGravity = false
                     aNode[aNode.count-1].position = CGPoint(x:100, y:70);
@@ -293,12 +317,18 @@ class GameScene: SKScene {
         }
     }
     @objc func timerUpdate() {
-         button.colorBlendFactor = 0
-         bNode.isHidden = true
-         bNode.physicsBody?.categoryBitMask = 0x00000000
+        bNode.texture = SKTexture(imageNamed: "donut2.png")
+        bNode.size = CGSize.init(width: 100, height: 100)
+        self.timer = Timer(timeInterval: 0.5, target: self, selector: #selector(GameScene.timerUpdate2), userInfo: nil, repeats: false)
+        RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
     }
-    //@objc func timerUpdate2() {
-    //    }
+    @objc func timerUpdate2() {
+        button.colorBlendFactor = 0
+        bNode.isHidden = true
+        bNode.physicsBody?.categoryBitMask = 0x00000000
+        bNode.texture = SKTexture(imageNamed: "donut.png")
+        bNode.size = CGSize.init(width: 150, height: 150)
+        }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
             if lineNode.isHidden == false{
                 let touch = touches.first!
@@ -318,8 +348,7 @@ class GameScene: SKScene {
                 lineNode.removeFromParent()
                 self.addChild(lineNode)
             }
-//        self.timer = Timer(timeInterval: 0, target: self, selector: #selector(GameScene.timerUpdate2), userInfo: nil, repeats: false)
-//        RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -337,17 +366,24 @@ extension GameScene: SKPhysicsContactDelegate {
 //        print(contact.bodyA)
 //        print(contact.bodyB)
 //        print("------------衝突しました------------")
-        if contact.bodyB.categoryBitMask == lineNode.physicsBody!.categoryBitMask {
+        if contact.bodyA.categoryBitMask == lineNode.physicsBody!.categoryBitMask {
+            contact.bodyB.node?.name = "fast"
 //            print("------------衝突しました------------")
-            angle = self.randomFloatValue(0, high: 360) * CGFloat.pi / 180.0
+            angle = (self.randomFloatValue(0, high: 180) * CGFloat.pi) / 180.0
             value = 80.0
             vector = CGVector(dx: (value * CGFloat(cos(Double(angle)))), dy: (value * CGFloat(sin(Double(angle)))))
-            contact.bodyA.node?.physicsBody?.applyImpulse(vector!)
-            contact.bodyA.node?.physicsBody?.velocity = vector!
+            
+            //            print(angle)
+            contact.bodyB.node?.physicsBody?.applyImpulse(vector!)
+            contact.bodyB.node?.physicsBody?.velocity = vector!
             //回転のアクションを実行する。
             let rotateAction1 = SKAction.rotate( toAngle: angle - CGFloat(Double.pi), duration: 0)
-            contact.bodyA.node?.run(rotateAction1)
-            savePos = (contact.bodyA.node?.position.x, contact.bodyA.node?.position.y) as! (x: CGFloat, y: CGFloat)
+            contact.bodyB.node?.run(rotateAction1)
+            savePos = (contact.bodyB.node?.position.x, contact.bodyB.node?.position.y) as! (x: CGFloat, y: CGFloat)
+            if contact.bodyA.categoryBitMask == bNode.physicsBody!.categoryBitMask {
+                self.timer = Timer(timeInterval: 1.5, target: self, selector: #selector(GameScene.timerUpdate), userInfo: nil, repeats: false)
+                RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+            }
         } else {
             angle = (self.randomFloatValue(0, high: 180) * CGFloat.pi) / 180.0
             value = 80.0
@@ -361,7 +397,7 @@ extension GameScene: SKPhysicsContactDelegate {
             contact.bodyB.node?.run(rotateAction1)
             savePos = (contact.bodyB.node?.position.x, contact.bodyB.node?.position.y) as! (x: CGFloat, y: CGFloat)
             if contact.bodyA.categoryBitMask == bNode.physicsBody!.categoryBitMask {
-                self.timer = Timer(timeInterval: 5, target: self, selector: #selector(GameScene.timerUpdate), userInfo: nil, repeats: false)
+                self.timer = Timer(timeInterval: 1.0, target: self, selector: #selector(GameScene.timerUpdate), userInfo: nil, repeats: false)
                 RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
             }
         }
