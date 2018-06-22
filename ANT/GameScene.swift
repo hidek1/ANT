@@ -16,6 +16,7 @@ class GameScene: SKScene {
     var aNode: [SKSpriteNode!] = []
     var bNode: SKSpriteNode!
     var cNode: SKSpriteNode!
+    var dNode: SKSpriteNode!
     var touchedNode: SKNode?
     var angle: CGFloat = 0
     var value: CGFloat = 0
@@ -46,7 +47,7 @@ class GameScene: SKScene {
         countTime = defaults.integer(forKey: "time")
         antLabel = childNode(withName: "antLabel") as! SKLabelNode
         antCount = defaults.integer(forKey: "antCount")
-        antLabel.text = "潰した蟻\(antCount)匹"
+        antLabel.text = "つぶしたあり \(antCount)ひき"
         physicsWorld.contactDelegate = self
         timeLabel = childNode(withName: "timeLabel") as! SKLabelNode
         backgroundNode = childNode(withName: "Background") as! SKSpriteNode
@@ -68,6 +69,12 @@ class GameScene: SKScene {
         cNode.physicsBody = SKPhysicsBody(rectangleOf: cNode.frame.size)
         cNode.physicsBody?.affectedByGravity = false
         cNode.physicsBody?.isDynamic = false
+        
+        dNode = SKSpriteNode(imageNamed: "donut.png")
+        dNode.size = CGSize.init(width: 150, height: 150)
+        dNode.isHidden = true
+        dNode.alpha = 0.5
+        addChild(dNode)
         
         lineNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: lineNode.lineWidth, height: 5000))
         lineNode.isHidden = true
@@ -120,6 +127,7 @@ class GameScene: SKScene {
             aNode[i].physicsBody?.collisionBitMask = 0xFFFFFFFF
             aNode[i].physicsBody?.contactTestBitMask = aNode[i].physicsBody!.categoryBitMask | bNode.physicsBody!.categoryBitMask | backgroundNode.physicsBody!.categoryBitMask | lineNode.physicsBody!.categoryBitMask | cNode.physicsBody!.categoryBitMask
             self.addChild(aNode[i])
+//            print(aNode[i].position)
         }
         
         //テクスチャアトラスからボタン作成
@@ -148,6 +156,7 @@ class GameScene: SKScene {
         
         fbButton = childNode(withName: "fbButton") as! SKSpriteNode
         fbButton.name = "facebook_button"
+        
     }
     
     func socialButtonTapped(social:String){
@@ -189,11 +198,11 @@ class GameScene: SKScene {
         let minutes = (span - hourSec * hours) / minuteSec
         // 残りは秒
         let secs = (span - hourSec * hours - minutes * minuteSec)
-        timeLabel.text = "プレイ時間\(hours)時間 \(minutes)分 \(secs)秒" // 今回追加
+        timeLabel.text = "プレイ時間 \(hours)時間 \(minutes)分 \(secs)秒" // 今回追加
         defaults.set(time, forKey: "time")
         for i in 0..<aNode.count {
             if aNode[i].name == "fast" {
-                value = 250.0
+                value = 280.0
                 vector = CGVector(dx: (-value * CGFloat(cos(aNode[i].zRotation))), dy: (-value * CGFloat(sin(aNode[i].zRotation))))
                 aNode[i].physicsBody?.velocity = vector!
             } else {
@@ -201,6 +210,13 @@ class GameScene: SKScene {
                 vector = CGVector(dx: (-value * CGFloat(cos(aNode[i].zRotation))), dy: (-value * CGFloat(sin(aNode[i].zRotation))))
                 aNode[i].physicsBody?.velocity = vector!
                 
+            }
+            if backgroundNode.contains(aNode[i].position) == false  {
+                aNode[i].removeFromParent()
+                //                    print(aNode.count)
+                  aNode.remove(at: i)
+//                  print("消えた")
+                break
             }
         }
     }
@@ -210,7 +226,21 @@ class GameScene: SKScene {
         return ((CGFloat(arc4random()) / CGFloat(RAND_MAX)) * (high - low) + low)
     }
     
-    
+    @objc func timerUpdate() {
+        bNode.texture = SKTexture(imageNamed: "donut2.png")
+        bNode.size = CGSize.init(width: 100, height: 100)
+        self.timer = Timer(timeInterval: 0.5, target: self, selector: #selector(GameScene.timerUpdate2), userInfo: nil, repeats: false)
+        RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+    }
+    @objc func timerUpdate2() {
+        if button3.colorBlendFactor == 1 {
+        button.colorBlendFactor = 0
+        }
+        bNode.isHidden = true
+        bNode.physicsBody?.categoryBitMask = 0x00000000
+        bNode.texture = SKTexture(imageNamed: "donut.png")
+        bNode.size = CGSize.init(width: 150, height: 150)
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for i in 0..<aNode.count {
@@ -230,7 +260,7 @@ class GameScene: SKScene {
                     aNode.remove(at: i)
 //                    print(aNode.count)
                     antCount += 1
-                    antLabel.text = "潰した蟻\(antCount)匹"
+                    antLabel.text = "つぶしたあり \(antCount)ひき"
                     defaults.set(antCount, forKey: "antCount")
                     break
                 }
@@ -244,27 +274,10 @@ class GameScene: SKScene {
             }
             if self.atPoint(location).name == "button" {
                 if button.colorBlendFactor == 0{
-                    button.color = UIColor.gray
-                    button.colorBlendFactor = 1
-                    bNode.isHidden = false
-                    bNode.physicsBody?.categoryBitMask = UInt32(1)
-                    for i in 0..<aNode.count {
-                        let radian = atan2(bNode.position.x - aNode[i].position.x, bNode.position.y - aNode[i].position.y)
-                        value = 80.0
-                            vector = CGVector(dx: (-value * CGFloat(cos(radian))), dy: (-value * CGFloat(sin(radian))))
-//                            aNode[i].physicsBody?.applyImpulse(vector!)
-//                            aNode[i].physicsBody?.velocity = vector!
-                        //回転のアクションを実行する。
-                        let rotateAction1 = SKAction.rotate( byAngle: radian, duration: 0)
-                        aNode[i].run(rotateAction1)
-                        let rotateAction2 = SKAction.move(to: CGPoint(x: 0,y: 0), duration: 1.5)
-                            aNode[i].run(rotateAction2)
-                        
-                        savePos = (aNode[i].position.x, aNode[i].position.y)
-                        aNode[i].physicsBody?.categoryBitMask = UInt32(i+5)
-                        aNode[i].physicsBody?.collisionBitMask = 0xFFFFFFFF
-                        aNode[i].physicsBody?.contactTestBitMask = aNode[i].physicsBody!.categoryBitMask | bNode.physicsBody!.categoryBitMask | backgroundNode.physicsBody!.categoryBitMask | lineNode.physicsBody!.categoryBitMask | cNode.physicsBody!.categoryBitMask
-                    }
+                      bNode.name = "possible"
+                } else {
+                   button.colorBlendFactor = 0
+                   button3.colorBlendFactor = 1
                 }
             }
             if self.atPoint(location).name == "button2" {
@@ -307,55 +320,79 @@ class GameScene: SKScene {
             if self.atPoint(location).name == "button3" {
                 if button3.colorBlendFactor == 1{
                  button3.colorBlendFactor = 0
+                 button.color = UIColor.gray
+                 button.colorBlendFactor = 1
                  lineNode.isHidden = false
                 } else {
                  button3.color = UIColor.gray
                  button3.colorBlendFactor = 1
+                 button.colorBlendFactor = 0
                  lineNode.isHidden = true
                 }
             }
         }
     }
-    @objc func timerUpdate() {
-        bNode.texture = SKTexture(imageNamed: "donut2.png")
-        bNode.size = CGSize.init(width: 100, height: 100)
-        self.timer = Timer(timeInterval: 0.5, target: self, selector: #selector(GameScene.timerUpdate2), userInfo: nil, repeats: false)
-        RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
-    }
-    @objc func timerUpdate2() {
-        button.colorBlendFactor = 0
-        bNode.isHidden = true
-        bNode.physicsBody?.categoryBitMask = 0x00000000
-        bNode.texture = SKTexture(imageNamed: "donut.png")
-        bNode.size = CGSize.init(width: 150, height: 150)
-        }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-            if lineNode.isHidden == false{
-                let touch = touches.first!
-                let position = touch.location(in: self)
-                let path = CGMutablePath()
-                path.move(to: firstPoint!)
-                path.addLine(to: position)
-                lineNode.path = path
-                lineNode.lineWidth = 10.0
-                lineNode.strokeColor = UIColor.white
-                //firstPoint = position
-                lineNode.fillColor = UIColor.red
-                lineNode.physicsBody = SKPhysicsBody(edgeChainFrom: lineNode.path!)
-                lineNode.physicsBody?.isDynamic = false
-                lineNode.physicsBody?.categoryBitMask = UInt32(2)
-                lineNode.physicsBody?.collisionBitMask = 0xFFFFFFFF
-                lineNode.removeFromParent()
-                self.addChild(lineNode)
-            }
+        if button3.colorBlendFactor == 0 {
+            let touch = touches.first!
+            let position = touch.location(in: self)
+            let path = CGMutablePath()
+            path.move(to: firstPoint!)
+            path.addLine(to: position)
+            lineNode.path = path
+            lineNode.lineWidth = 10.0
+            lineNode.strokeColor = UIColor.white
+            //firstPoint = position
+            lineNode.fillColor = UIColor.red
+            lineNode.physicsBody = SKPhysicsBody(edgeChainFrom: lineNode.path!)
+            lineNode.physicsBody?.isDynamic = false
+            lineNode.physicsBody?.categoryBitMask = UInt32(2)
+            lineNode.physicsBody?.collisionBitMask = 0xFFFFFFFF
+            lineNode.removeFromParent()
+            self.addChild(lineNode)
+        }
+        
+        if bNode.name == "possible" {
+            let touch = touches.first!
+//            let position = touch.location(in: self)
+            dNode.position = touch.location(in: self)
+            dNode.isHidden = false
+        }
 
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        lineNode.removeFromParent()
-//        for i in 0..<aNode.count {
-//            aNode[i].physicsBody?.contactTestBitMask = lineNode.physicsBody!.categoryBitMask
-//        }
+        dNode.isHidden = true
+        if bNode.name == "possible" {
+             let touch = touches.first!
+             let position = touch.location(in: self)
+//            print(backgroundNode)
+            if self.atPoint(position) == backgroundNode{
+                bNode.position = touch.location(in: self)
+                button.color = UIColor.gray
+                button.colorBlendFactor = 1
+                bNode.isHidden = false
+                bNode.physicsBody?.categoryBitMask = UInt32(1)
+                for i in 0..<aNode.count {
+                    let radian = atan2(bNode.position.x - aNode[i].position.x, bNode.position.y - aNode[i].position.y)
+                    value = 80.0
+                    vector = CGVector(dx: (-value * CGFloat(cos(radian))), dy: (-value * CGFloat(sin(radian))))
+                    //                            aNode[i].physicsBody?.applyImpulse(vector!)
+                    //                            aNode[i].physicsBody?.velocity = vector!
+                    //回転のアクションを実行する。
+                    let rotateAction1 = SKAction.rotate( byAngle: radian, duration: 0)
+                    aNode[i].run(rotateAction1)
+                    let rotateAction2 = SKAction.move(to: touch.location(in: self), duration: 1.5)
+                    aNode[i].run(rotateAction2)
+                    
+                    savePos = (aNode[i].position.x, aNode[i].position.y)
+                    aNode[i].physicsBody?.categoryBitMask = UInt32(i+5)
+                    aNode[i].physicsBody?.collisionBitMask = 0xFFFFFFFF
+                    aNode[i].physicsBody?.contactTestBitMask = aNode[i].physicsBody!.categoryBitMask | bNode.physicsBody!.categoryBitMask | backgroundNode.physicsBody!.categoryBitMask | lineNode.physicsBody!.categoryBitMask | cNode.physicsBody!.categoryBitMask
+                }
+            }
+        }
+        bNode.name = "impossible"
         
     }
 

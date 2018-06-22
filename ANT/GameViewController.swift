@@ -35,7 +35,6 @@ class GameViewController: UIViewController {
     }
     
     @objc func showSocialShare(notification: NSNotification) {
-        print("aaaa")
         // (1) オブザーバーから渡ってきたuserInfoから必要なデータを取得する
         let userInfo:Dictionary<String,NSData!> = notification.userInfo as! Dictionary<String,NSData!>
         let message = NSString(data: userInfo["message"]! as Data, encoding: UInt())
@@ -59,6 +58,7 @@ class GameViewController: UIViewController {
                 print("SLComposeViewControllerResult.Done")
             case SLComposeViewControllerResult.cancelled:
                 print("SLComposeViewControllerResult.Cancelled")
+                
             }
         }
         self.present(shareView!, animated: true, completion: nil)
