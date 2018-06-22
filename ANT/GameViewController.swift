@@ -15,20 +15,35 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(showSocialShare), name: NSNotification.Name(rawValue: "socialShare"), object: nil)
+//        if let view = self.view as! SKView? {
+//            // Load the SKScene from 'GameScene.sks'
+//            if let scene = SKScene(fileNamed: "GameScene") {
+//                // Set the scale mode to scale to fit the window
+//                scene.scaleMode = .aspectFill
+//
+//                // Present the scene
+//                view.presentScene(scene)
+////                print(scene.frame,#function)
+//
+//            }
+//
+//            view.ignoresSiblingOrder = true
+//
+//            view.showsFPS = true
+//            view.showsNodeCount = true
+//        }
         if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
+            if let scene = GameScene(fileNamed: "GameScene") {
+                if (UIDevice.current.model.range(of: "iPad") != nil) {
+                    scene.scaleMode = .fill
+                } else if UIScreen.main.nativeBounds.height == 2436.0 {
+                    scene.scaleMode = .aspectFit
+                } else {
+                    scene.scaleMode = .aspectFill
+                }
                 view.presentScene(scene)
-//                print(scene.frame,#function)
-
             }
-            
             view.ignoresSiblingOrder = true
-            
             view.showsFPS = true
             view.showsNodeCount = true
         }
