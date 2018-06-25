@@ -9,8 +9,8 @@ import Foundation
 import SpriteKit
 
 class GameScene: SKScene {
-    var timeLabel = SKLabelNode(text: "○時間○分○秒")
-    var antLabel = SKLabelNode(text: "○秒")
+    var timeLabel = SKLabelNode(text: "○ hour ○ min ○ sec")
+    var antLabel = SKLabelNode(text: "○ sec")
     var backgroundNode: SKSpriteNode!
     var backgroundoutNode: SKSpriteNode!
     var aNode: [SKSpriteNode!] = []
@@ -30,11 +30,17 @@ class GameScene: SKScene {
     let defaults = UserDefaults.standard
     var time: Int = 0
     var antCount: Int = 0
-    var twButton: SKSpriteNode!
-    var fbButton: SKSpriteNode!
     var touchButtonName:String? = ""
     let button = SKSpriteNode(imageNamed: "donutButton.png")
     let button3 = SKSpriteNode(imageNamed: "chalk.png")
+    var sharebutton : SKSpriteNode!
+    
+    // 時間
+    var hours: Int = 0
+    // 分
+    var minutes: Int = 0
+    // 残りは秒
+    var secs: Int = 0
 
     
     //保存座標
@@ -47,7 +53,7 @@ class GameScene: SKScene {
         countTime = defaults.integer(forKey: "time")
         antLabel = childNode(withName: "antLabel") as! SKLabelNode
         antCount = defaults.integer(forKey: "antCount")
-        antLabel.text = "つぶしたあり \(antCount)ひき"
+        antLabel.text = "Smashed ants: \(antCount)"
         physicsWorld.contactDelegate = self
         timeLabel = childNode(withName: "timeLabel") as! SKLabelNode
         backgroundNode = childNode(withName: "Background") as! SKSpriteNode
@@ -151,32 +157,14 @@ class GameScene: SKScene {
         button3.colorBlendFactor = 1
         self.addChild(button3)
         
-        twButton = childNode(withName: "twButton") as! SKSpriteNode
-        twButton.name = "twitter_button"
+        sharebutton = childNode(withName: "share") as! SKSpriteNode
+        sharebutton.zPosition = 1
+        sharebutton.name = "sharebutton"
+
         
-        fbButton = childNode(withName: "fbButton") as! SKSpriteNode
-        fbButton.name = "facebook_button"
         
     }
     
-    func socialButtonTapped(social:String){
-        
-        // share画面で表示するメッセージを格納
-        var message = String()
-        if social == "twitter" {
-            message = "Twitter Share"
-        } else {
-            message = "Facebook Share"
-        }
-        
-        // userinfoに情報(socialの種類とmessage)を格納
-        let userInfo = ["social": social.data(using: String.Encoding.utf8, allowLossyConversion: true)!,"message": message.data(using: String.Encoding.utf8, allowLossyConversion: true)!]
-        
-        print(userInfo)
-        
-        // userInfoも含めて、"socialShare"という名称の通知をここで飛ばす
-        NotificationCenter.default.post(name:  NSNotification.Name(rawValue: "socialShare"), object: nil, userInfo: userInfo)
-    }
     
     override func update(_ currentTime: TimeInterval) {
         if prevTime == 0 {
@@ -193,12 +181,12 @@ class GameScene: SKScene {
         let minuteSec = 60        // 1分の秒数
         
         // 時間
-        let hours = span / hourSec
+        hours = span / hourSec
         // 分
-        let minutes = (span - hourSec * hours) / minuteSec
+        minutes = (span - hourSec * hours) / minuteSec
         // 残りは秒
-        let secs = (span - hourSec * hours - minutes * minuteSec)
-        timeLabel.text = "プレイ時間 \(hours)時間 \(minutes)分 \(secs)秒" // 今回追加
+        secs = (span - hourSec * hours - minutes * minuteSec)
+        timeLabel.text = "Playing time: \(hours) hour \(minutes) min \(secs) sec" // 今回追加
         defaults.set(time, forKey: "time")
         for i in 0..<aNode.count {
             if aNode[i].name == "fast" {
@@ -242,6 +230,7 @@ class GameScene: SKScene {
         bNode.size = CGSize.init(width: 150, height: 150)
     }
 
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for i in 0..<aNode.count {
             aNode[i].name = "normal"
@@ -260,24 +249,19 @@ class GameScene: SKScene {
                     aNode.remove(at: i)
 //                    print(aNode.count)
                     antCount += 1
-                    antLabel.text = "つぶしたあり \(antCount)ひき"
+                    antLabel.text = "Smashed ants: \(antCount)"
                     defaults.set(antCount, forKey: "antCount")
                     break
                 }
-            }
-            if self.atPoint(location).name == "twitter_button" {
-                socialButtonTapped(social: "twitter")
-//                print("a")
-            } else if self.atPoint(location).name == "facebook_button" {
-                socialButtonTapped(social: "facebook")
-//                print("b")
             }
             if self.atPoint(location).name == "button" {
                 if button.colorBlendFactor == 0{
                       bNode.name = "possible"
                 } else {
-                   button.colorBlendFactor = 0
-                   button3.colorBlendFactor = 1
+                    if bNode.isHidden == true {
+                       button.colorBlendFactor = 0
+                       button3.colorBlendFactor = 1
+                    }
                 }
             }
             if self.atPoint(location).name == "button2" {
@@ -329,6 +313,19 @@ class GameScene: SKScene {
                  button.colorBlendFactor = 0
                  lineNode.isHidden = true
                 }
+            }
+            if self.atPoint(location).name == "sharebutton" {
+                let text = "You played with ants for \(hours) hour \(minutes) min \(secs) sec and you smashed \(antCount) ants!\nThe application to play with ants. ANT"
+                let sampleUrl = NSURL(string: "http://appstore.com/")!
+//                let image = UIImage(named: "ant.png")!
+                let items = [text, sampleUrl] as [Any]
+                
+                // UIActivityViewControllerをインスタンス化
+                let activityVc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                
+                
+                var currentViewController : UIViewController? = UIApplication.shared.keyWindow?.rootViewController!
+                currentViewController?.present(activityVc, animated: true, completion: nil)
             }
         }
     }

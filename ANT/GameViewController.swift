@@ -14,7 +14,6 @@ import Social
 class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(showSocialShare), name: NSNotification.Name(rawValue: "socialShare"), object: nil)
 //        if let view = self.view as! SKView? {
 //            // Load the SKScene from 'GameScene.sks'
 //            if let scene = SKScene(fileNamed: "GameScene") {
@@ -32,6 +31,7 @@ class GameViewController: UIViewController {
 //            view.showsFPS = true
 //            view.showsNodeCount = true
 //        }
+        
         if let view = self.view as! SKView? {
             if let scene = GameScene(fileNamed: "GameScene") {
                 if (UIDevice.current.model.range(of: "iPad") != nil) {
@@ -49,35 +49,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    @objc func showSocialShare(notification: NSNotification) {
-        // (1) オブザーバーから渡ってきたuserInfoから必要なデータを取得する
-        let userInfo:Dictionary<String,NSData!> = notification.userInfo as! Dictionary<String,NSData!>
-        let message = NSString(data: userInfo["message"]! as Data, encoding: UInt())
-        let social = NSString(data: userInfo["social"]! as Data, encoding: UInt())
-        // (2) userInfoの情報をもとにTwitter/Facebookボタンどちらが押されたのか特定する
-        var type = String()
-        if social == "twitter" {
-            type = SLServiceTypeTwitter
-        } else if social == "facebook" {
-            type = SLServiceTypeFacebook
-        }
-        
-        // (3) shareViewControllerを作成、表示する
-        var shareView = SLComposeViewController(forServiceType: type)
-        shareView?.setInitialText(message as! String)
-        
-        shareView?.completionHandler = {
-            (result:SLComposeViewControllerResult) -> () in
-            switch (result) {
-            case SLComposeViewControllerResult.done:
-                print("SLComposeViewControllerResult.Done")
-            case SLComposeViewControllerResult.cancelled:
-                print("SLComposeViewControllerResult.Cancelled")
-                
-            }
-        }
-        self.present(shareView!, animated: true, completion: nil)
-    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
 //        print(self.view.frame,#function)

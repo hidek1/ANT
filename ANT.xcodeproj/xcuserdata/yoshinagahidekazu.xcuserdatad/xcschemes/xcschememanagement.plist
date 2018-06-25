@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ANT_ja.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>71BA568620C7C4A8000147A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>71BA56A020C7C4A9000147A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>71BA56AB20C7C4A9000147A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>
