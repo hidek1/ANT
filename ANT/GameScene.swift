@@ -53,7 +53,7 @@ class GameScene: SKScene {
         countTime = defaults.integer(forKey: "time")
         antLabel = childNode(withName: "antLabel") as! SKLabelNode
         antCount = defaults.integer(forKey: "antCount")
-        antLabel.text = "Smashed ants: \(antCount)"
+        antLabel.text = String(format: NSLocalizedString("Smashed ants", comment: ""), antCount)
         physicsWorld.contactDelegate = self
         timeLabel = childNode(withName: "timeLabel") as! SKLabelNode
         backgroundNode = childNode(withName: "Background") as! SKSpriteNode
@@ -186,8 +186,11 @@ class GameScene: SKScene {
         minutes = (span - hourSec * hours) / minuteSec
         // 残りは秒
         secs = (span - hourSec * hours - minutes * minuteSec)
-        timeLabel.text = "Playing time: \(hours) hour \(minutes) min \(secs) sec" // 今回追加
-        defaults.set(time, forKey: "time")
+        timeLabel.text = String(format: NSLocalizedString("Playing time", comment: ""), hours,minutes,secs)
+//            NSLocalizedString("Playing time", comment: "",hours,minutes,secs) // 今回追加
+//        defaults.set(time, forKey: "time")
+        
+        
         for i in 0..<aNode.count {
             if aNode[i].name == "fast" {
                 value = 280.0
@@ -208,6 +211,14 @@ class GameScene: SKScene {
             }
         }
     }
+    func defaultSet() {
+        defaults.set(time, forKey: "time")
+    }
+    func defaultGet() {
+        countTime = defaults.integer(forKey: "time")
+        startTime = CACurrentMediaTime()
+    }
+    
     
     
     fileprivate func randomFloatValue(_ low: CGFloat, high: CGFloat) -> CGFloat {
@@ -215,19 +226,27 @@ class GameScene: SKScene {
     }
     
     @objc func timerUpdate() {
+        button.colorBlendFactor = 1
         bNode.texture = SKTexture(imageNamed: "donut2.png")
         bNode.size = CGSize.init(width: 100, height: 100)
         self.timer = Timer(timeInterval: 0.5, target: self, selector: #selector(GameScene.timerUpdate2), userInfo: nil, repeats: false)
         RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
     }
     @objc func timerUpdate2() {
-        if button3.colorBlendFactor == 1 {
-        button.colorBlendFactor = 0
-        }
+        button.colorBlendFactor = 1
         bNode.isHidden = true
         bNode.physicsBody?.categoryBitMask = 0x00000000
         bNode.texture = SKTexture(imageNamed: "donut.png")
         bNode.size = CGSize.init(width: 150, height: 150)
+        self.timer = Timer(timeInterval: 1, target: self, selector: #selector(GameScene.timerUpdate3), userInfo: nil, repeats: false)
+        RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+    }
+    @objc func timerUpdate3() {
+        if button3.colorBlendFactor == 1 {
+            button.colorBlendFactor = 0
+        }
+        self.timer?.invalidate()
+        
     }
 
 
@@ -249,7 +268,7 @@ class GameScene: SKScene {
                     aNode.remove(at: i)
 //                    print(aNode.count)
                     antCount += 1
-                    antLabel.text = "Smashed ants: \(antCount)"
+                    antLabel.text = String(format: NSLocalizedString("Smashed ants", comment: ""), antCount)
                     defaults.set(antCount, forKey: "antCount")
                     break
                 }
@@ -315,7 +334,7 @@ class GameScene: SKScene {
                 }
             }
             if self.atPoint(location).name == "sharebutton" {
-                let text = "You played with ants for \(hours) hour \(minutes) min \(secs) sec and you smashed \(antCount) ants!\nThe application to play with ants. ANT"
+                let text = String(format: NSLocalizedString("share", comment: ""), hours,minutes,secs,antCount)
                 let sampleUrl = NSURL(string: "http://appstore.com/")!
 //                let image = UIImage(named: "ant.png")!
                 let items = [text, sampleUrl] as [Any]
@@ -414,10 +433,6 @@ extension GameScene: SKPhysicsContactDelegate {
             let rotateAction1 = SKAction.rotate( toAngle: angle - CGFloat(Double.pi), duration: 0)
             contact.bodyB.node?.run(rotateAction1)
             savePos = (contact.bodyB.node?.position.x, contact.bodyB.node?.position.y) as! (x: CGFloat, y: CGFloat)
-            if contact.bodyA.categoryBitMask == bNode.physicsBody!.categoryBitMask {
-                self.timer = Timer(timeInterval: 1.5, target: self, selector: #selector(GameScene.timerUpdate), userInfo: nil, repeats: false)
-                RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
-            }
         } else {
             angle = (self.randomFloatValue(0, high: 180) * CGFloat.pi) / 180.0
             value = 80.0
@@ -431,8 +446,11 @@ extension GameScene: SKPhysicsContactDelegate {
             contact.bodyB.node?.run(rotateAction1)
             savePos = (contact.bodyB.node?.position.x, contact.bodyB.node?.position.y) as! (x: CGFloat, y: CGFloat)
             if contact.bodyA.categoryBitMask == bNode.physicsBody!.categoryBitMask {
-                self.timer = Timer(timeInterval: 1.0, target: self, selector: #selector(GameScene.timerUpdate), userInfo: nil, repeats: false)
-                RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+                if bNode.name != "eaten" {
+                    bNode.name = "eaten" as String
+                    self.timer = Timer(timeInterval: 1.0, target: self, selector: #selector(GameScene.timerUpdate), userInfo: nil, repeats: false)
+                    RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+                }
             }
         }
     }

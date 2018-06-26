@@ -5,6 +5,6 @@
   Created by 吉永秀和 on 2018/06/24.
   Copyright © 2018年 吉永秀和. All rights reserved.
 */
-"Smashed ants: \(antCount)" = "潰したあり　\(antCount)匹";
-"Playing time: \(hours) hour \(minutes) min \(secs) sec" = "プレイ時間　\(hours)時間\(minutes)分\(secs) 秒";
-"You played with ants for \(hours) hour \(minutes) min \(secs) sec and you smashed \(antCount) ants!\nThe application to play with ants. ANT" = "\(hours)時間\(minutes)分\(secs)秒ありと戯れ、\(antCount)匹のありを潰しました！\nありと戯れるアプリ ANT";
+"Smashed ants" = "潰したあり　%d匹";
+"Playing time" = "プレイ時間　%d時間%d分%d秒";
+"share" = "%d時間%d分%d秒ありと戯れ、%d匹のありを潰しました！\nありと戯れるアプリ ANT";

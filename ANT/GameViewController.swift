@@ -11,6 +11,8 @@ import SpriteKit
 import GameplayKit
 import Social
 
+var scene:GameScene = GameScene()
+
 class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +35,8 @@ class GameViewController: UIViewController {
 //        }
         
         if let view = self.view as! SKView? {
-            if let scene = GameScene(fileNamed: "GameScene") {
+            scene = GameScene(fileNamed: "GameScene")!
+//            if scene = GameScene(fileNamed: "GameScene") {
                 if (UIDevice.current.model.range(of: "iPad") != nil) {
                     scene.scaleMode = .fill
                 } else if UIScreen.main.nativeBounds.height == 2436.0 {
@@ -42,7 +45,7 @@ class GameViewController: UIViewController {
                     scene.scaleMode = .aspectFill
                 }
                 view.presentScene(scene)
-            }
+//            }
             view.ignoresSiblingOrder = true
             view.showsFPS = true
             view.showsNodeCount = true
