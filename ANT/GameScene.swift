@@ -341,6 +341,7 @@ class GameScene: SKScene {
                 
                 // UIActivityViewControllerをインスタンス化
                 let activityVc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                activityVc.popoverPresentationController?.sourceView = self.view
                 
                 
                 var currentViewController : UIViewController? = UIApplication.shared.keyWindow?.rootViewController!
