@@ -8,3 +8,8 @@
 "Smashed ants" = "Smashed ants: %d";
 "Playing time" = "Playing time: %d hour %d min %d sec";
 "share" = "You played with ants for %d hour %d min %d sec and you smashed %d ants!\nThe application to play with ants. ANT";
+"smash 100,000 ants" = "smash 100,000 ants";
+"smash 50,000 ants" = "smash 50,000 ants";
+"smash 10,000 ants" = "smash 10,000 ants";
+"donut" = "put 1000 donut";
+"chalk" = "make 30,000 ants\npanic by chalk";

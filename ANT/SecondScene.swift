@@ -88,11 +88,12 @@ class SecondScene: SKScene {
         bronzeLabel.text = "ant smasher C"
         redLabel.text = "feeder"
         blueLabel.text = "liner"
-        goldLabel2.text = "smash 100,000 ants"
-        silverLabel2.text = "smash 50,000 ants"
-        bronzeLabel2.text = "smash 10,000 ants"
-        redLabel2.text = "put 1000 donut"
-        blueLabel2.text = "make 30,000 ants\npanic by chalk"
+        goldLabel2.text = NSLocalizedString("smash 100,000 ants", comment: "")
+        silverLabel2.text = NSLocalizedString("smash 50,000 ants", comment: "")
+        bronzeLabel2.text = NSLocalizedString("smash 10,000 ants", comment: "")
+        redLabel2.text = NSLocalizedString("donut", comment: "")
+        blueLabel2.text = NSLocalizedString("chalk", comment: "")
+        blueLabel2.horizontalAlignmentMode = .center
         
     }
     

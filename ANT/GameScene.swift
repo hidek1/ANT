@@ -275,7 +275,6 @@ class GameScene: SKScene {
         backNode.isHidden = true
         backLabel.isHidden = true
         eNode.removeFromParent()
-        self.timer?.invalidate()
         print("deleted")
     }
 
@@ -303,6 +302,39 @@ class GameScene: SKScene {
                     antCount += 1
                     antLabel.text = String(format: NSLocalizedString("Smashed ants", comment: ""), antCount)
                     defaults.set(antCount, forKey: "antCount")
+                    if antCount == 10000{
+                        eNode = SKSpriteNode(imageNamed: "王冠銅.png")
+                        eNode.size = CGSize.init(width: 150, height: 150)
+                        eNode.position = CGPoint(x: 0, y: -20)
+                        eNode.zPosition = 5
+                        addChild(eNode)
+                        backNode.isHidden = false
+                        backLabel.isHidden = false
+                        self.timer = Timer(timeInterval: 1, target: self, selector: #selector(GameScene.timerUpdate4), userInfo: nil, repeats: false)
+                        RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+                    }
+                    if antCount == 50000{
+                        eNode = SKSpriteNode(imageNamed: "王冠銀.png")
+                        eNode.size = CGSize.init(width: 150, height: 150)
+                        eNode.position = CGPoint(x: 0, y: -20)
+                        eNode.zPosition = 5
+                        addChild(eNode)
+                        backNode.isHidden = false
+                        backLabel.isHidden = false
+                        self.timer = Timer(timeInterval: 1, target: self, selector: #selector(GameScene.timerUpdate4), userInfo: nil, repeats: false)
+                        RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+                    }
+                    if antCount == 100000{
+                        eNode = SKSpriteNode(imageNamed: "王冠金.png")
+                        eNode.size = CGSize.init(width: 150, height: 150)
+                        eNode.position = CGPoint(x: 0, y: -20)
+                        eNode.zPosition = 5
+                        addChild(eNode)
+                        backNode.isHidden = false
+                        backLabel.isHidden = false
+                        self.timer = Timer(timeInterval: 1, target: self, selector: #selector(GameScene.timerUpdate4), userInfo: nil, repeats: false)
+                        RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+                    }
                     break
                 }
             }
@@ -461,7 +493,7 @@ class GameScene: SKScene {
                 donutCount += 1
                 defaults.set(donutCount, forKey: "donutCount")
                 print(donutCount)
-                if donutCount == 29{
+                if donutCount == 1000{
                     eNode = SKSpriteNode(imageNamed: "王冠赤.png")
                     eNode.size = CGSize.init(width: 150, height: 150)
                     eNode.position = CGPoint(x: 0, y: -20)
@@ -487,8 +519,18 @@ extension GameScene: SKPhysicsContactDelegate {
         if contact.bodyA.categoryBitMask == lineNode.physicsBody!.categoryBitMask {
             if contact.bodyB.node?.name != "fast"{
                 chalkCount += 1
-                print(chalkCount)
                 defaults.set(chalkCount, forKey: "chalkCount")
+                if chalkCount == 30000{
+                    eNode = SKSpriteNode(imageNamed: "王冠青.png")
+                    eNode.size = CGSize.init(width: 150, height: 150)
+                    eNode.position = CGPoint(x: 0, y: -20)
+                    eNode.zPosition = 5
+                    addChild(eNode)
+                    backNode.isHidden = false
+                    backLabel.isHidden = false
+                    self.timer = Timer(timeInterval: 1, target: self, selector: #selector(GameScene.timerUpdate4), userInfo: nil, repeats: false)
+                    RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+                }
             }
             contact.bodyB.node?.name = "fast"
 //            print("------------衝突しました------------")
