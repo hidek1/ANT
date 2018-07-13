@@ -7,6 +7,7 @@
 //
 import Foundation
 import SpriteKit
+import AVFoundation
 
 class GameScene: SKScene {
     var timeLabel = SKLabelNode(text: "○ hour ○ min ○ sec")
@@ -17,6 +18,9 @@ class GameScene: SKScene {
     var bNode: SKSpriteNode!
     var cNode: SKSpriteNode!
     var dNode: SKSpriteNode!
+    var eNode: SKSpriteNode!
+    var backNode: SKShapeNode!
+    var backLabel: SKLabelNode!
     var touchedNode: SKNode?
     var angle: CGFloat = 0
     var value: CGFloat = 0
@@ -30,19 +34,20 @@ class GameScene: SKScene {
     let defaults = UserDefaults.standard
     var time: Int = 0
     var antCount: Int = 0
+    var donutCount: Int = 0
+    var chalkCount: Int = 0
     var touchButtonName:String? = ""
     let button = SKSpriteNode(imageNamed: "donutButton.png")
     let button3 = SKSpriteNode(imageNamed: "chalk.png")
+    var award: SKSpriteNode!
     var sharebutton : SKSpriteNode!
-    
+    var audioPlayerInstance : AVAudioPlayer! = nil  // 再生するサウンドのインスタンス
     // 時間
     var hours: Int = 0
     // 分
     var minutes: Int = 0
     // 残りは秒
     var secs: Int = 0
-
-    
     //保存座標
     var savePos:(x:CGFloat, y:CGFloat)!
     
@@ -50,12 +55,30 @@ class GameScene: SKScene {
 
     
     override func didMove(to view: SKView) {
+        // サウンドファイルのパスを生成
+        let soundFilePath = Bundle.main.path(forResource: "smash", ofType: "mp3")!
+        let sound:URL = URL(fileURLWithPath: soundFilePath)
+        // AVAudioPlayerのインスタンスを作成
+        do {
+            audioPlayerInstance = try AVAudioPlayer(contentsOf: sound, fileTypeHint:nil)
+        } catch {
+            print("AVAudioPlayerインスタンス作成失敗")
+        }
+        // バッファに保持していつでも再生できるようにする
+        audioPlayerInstance.prepareToPlay()
+        donutCount = defaults.integer(forKey: "donutCount")
+        chalkCount = defaults.integer(forKey: "chalkCount")
         countTime = defaults.integer(forKey: "time")
         antLabel = childNode(withName: "antLabel") as! SKLabelNode
         antCount = defaults.integer(forKey: "antCount")
         antLabel.text = String(format: NSLocalizedString("Smashed ants", comment: ""), antCount)
         physicsWorld.contactDelegate = self
         timeLabel = childNode(withName: "timeLabel") as! SKLabelNode
+        award = childNode(withName: "award") as! SKSpriteNode
+        backNode = childNode(withName: "backNode") as! SKShapeNode
+        backNode.isHidden = true
+        backLabel = childNode(withName: "backLabel") as! SKLabelNode
+        backLabel.isHidden = true
         backgroundNode = childNode(withName: "Background") as! SKSpriteNode
         backgroundNode.isPaused = true
         
@@ -248,6 +271,13 @@ class GameScene: SKScene {
         self.timer?.invalidate()
         
     }
+    @objc func timerUpdate4() {
+        backNode.isHidden = true
+        backLabel.isHidden = true
+        eNode.removeFromParent()
+        self.timer?.invalidate()
+        print("deleted")
+    }
 
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -263,6 +293,9 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             for i in 0..<aNode.count {
                 if self.atPoint(location) == aNode[i] {
+                    // 連打した時に連続して音がなるようにする
+                    audioPlayerInstance.currentTime = 0         // 再生位置を先頭(0)に戻してから
+                    audioPlayerInstance.play()                  // 再生する
                      aNode[i].removeFromParent()
 //                    print(aNode.count)
                     aNode.remove(at: i)
@@ -333,6 +366,7 @@ class GameScene: SKScene {
                  lineNode.isHidden = true
                 }
             }
+            
             if self.atPoint(location).name == "sharebutton" {
                 let text = String(format: NSLocalizedString("share", comment: ""), hours,minutes,secs,antCount)
                 let sampleUrl = NSURL(string: "http://appstore.com/")!
@@ -346,6 +380,23 @@ class GameScene: SKScene {
                 
                 var currentViewController : UIViewController? = UIApplication.shared.keyWindow?.rootViewController!
                 currentViewController?.present(activityVc, animated: true, completion: nil)
+            }
+            if self.atPoint(location).name == "award" {
+                if let view = self.view {
+                    if let scene = SecondScene(fileNamed: "SecondScene") {
+                        if (UIDevice.current.model.range(of: "iPad") != nil) {
+                            scene.scaleMode = .fill
+                        } else if UIScreen.main.nativeBounds.height == 2436.0 {
+                            scene.scaleMode = .aspectFit
+                        } else {
+                            scene.scaleMode = .aspectFill
+                        }
+                        view.presentScene(scene)
+                    }
+                    view.ignoresSiblingOrder = true
+                    view.showsFPS = true
+                    view.showsNodeCount = true
+                }
             }
         }
     }
@@ -407,10 +458,23 @@ class GameScene: SKScene {
                     aNode[i].physicsBody?.collisionBitMask = 0xFFFFFFFF
                     aNode[i].physicsBody?.contactTestBitMask = aNode[i].physicsBody!.categoryBitMask | bNode.physicsBody!.categoryBitMask | backgroundNode.physicsBody!.categoryBitMask | lineNode.physicsBody!.categoryBitMask | cNode.physicsBody!.categoryBitMask
                 }
+                donutCount += 1
+                defaults.set(donutCount, forKey: "donutCount")
+                print(donutCount)
+                if donutCount == 29{
+                    eNode = SKSpriteNode(imageNamed: "王冠赤.png")
+                    eNode.size = CGSize.init(width: 150, height: 150)
+                    eNode.position = CGPoint(x: 0, y: -20)
+                    eNode.zPosition = 5
+                    addChild(eNode)
+                    backNode.isHidden = false
+                    backLabel.isHidden = false
+                    self.timer = Timer(timeInterval: 1, target: self, selector: #selector(GameScene.timerUpdate4), userInfo: nil, repeats: false)
+                    RunLoop.main.add(self.timer!, forMode: .defaultRunLoopMode)
+                }
             }
         }
         bNode.name = "impossible"
-        
     }
 
 }
@@ -421,6 +485,11 @@ extension GameScene: SKPhysicsContactDelegate {
 //        print(contact.bodyB)
 //        print("------------衝突しました------------")
         if contact.bodyA.categoryBitMask == lineNode.physicsBody!.categoryBitMask {
+            if contact.bodyB.node?.name != "fast"{
+                chalkCount += 1
+                print(chalkCount)
+                defaults.set(chalkCount, forKey: "chalkCount")
+            }
             contact.bodyB.node?.name = "fast"
 //            print("------------衝突しました------------")
             angle = (self.randomFloatValue(0, high: 180) * CGFloat.pi) / 180.0

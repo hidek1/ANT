@@ -9,8 +9,19 @@
 /* Begin PBXBuildFile section */
 		7109F9DD20D8CDD40075BCA7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7109F9DC20D8CDD40075BCA7 /* Social.framework */; };
 		7109F9DF20D8CDDB0075BCA7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7109F9DE20D8CDDB0075BCA7 /* Accounts.framework */; };
+		7114D20A20F7201800F429BC /* SecondScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7114D20920F7201800F429BC /* SecondScene.swift */; };
+		7114D20C20F7204400F429BC /* SecondScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7114D20B20F7204400F429BC /* SecondScene.sks */; };
+		7114D21020F7288200F429BC /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7114D20F20F7288200F429BC /* back.png */; };
+		7114D21620F72D5B00F429BC /* 王冠金.png in Resources */ = {isa = PBXBuildFile; fileRef = 7114D21120F72D5800F429BC /* 王冠金.png */; };
+		7114D21720F72D5B00F429BC /* 王冠銀.png in Resources */ = {isa = PBXBuildFile; fileRef = 7114D21220F72D5900F429BC /* 王冠銀.png */; };
+		7114D21820F72D5B00F429BC /* 王冠赤.png in Resources */ = {isa = PBXBuildFile; fileRef = 7114D21320F72D5A00F429BC /* 王冠赤.png */; };
+		7114D21920F72D5B00F429BC /* 王冠青.png in Resources */ = {isa = PBXBuildFile; fileRef = 7114D21420F72D5A00F429BC /* 王冠青.png */; };
+		7114D21A20F72D5B00F429BC /* 王冠銅.png in Resources */ = {isa = PBXBuildFile; fileRef = 7114D21520F72D5B00F429BC /* 王冠銅.png */; };
+		7114D21E20F7363300F429BC /* 1328.png in Resources */ = {isa = PBXBuildFile; fileRef = 7114D21D20F7363200F429BC /* 1328.png */; };
+		7114D22020F8451400F429BC /* smash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7114D21F20F8451300F429BC /* smash.mp3 */; };
 		7166A4B320DE503E0000B69F /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 7166A4B220DE503E0000B69F /* share.png */; };
 		7166A4B820DF34BD0000B69F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7166A4BA20DF34BD0000B69F /* Localizable.strings */; };
+		71A2D49020F7171400954E38 /* budge.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A2D48F20F7171300954E38 /* budge.png */; };
 		71A7DAA720DB7798003C1F6A /* ant.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A7DAA620DB7797003C1F6A /* ant.png */; };
 		71A7DAA920DB7879003C1F6A /* donutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A7DAA820DB7879003C1F6A /* donutButton.png */; };
 		71A7DAAB20DB78AD003C1F6A /* antbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A7DAAA20DB78AD003C1F6A /* antbutton.png */; };
@@ -52,11 +63,22 @@
 /* Begin PBXFileReference section */
 		7109F9DC20D8CDD40075BCA7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7109F9DE20D8CDDB0075BCA7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		7114D20920F7201800F429BC /* SecondScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondScene.swift; sourceTree = "<group>"; };
+		7114D20B20F7204400F429BC /* SecondScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SecondScene.sks; sourceTree = "<group>"; };
+		7114D20F20F7288200F429BC /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		7114D21120F72D5800F429BC /* 王冠金.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "王冠金.png"; sourceTree = "<group>"; };
+		7114D21220F72D5900F429BC /* 王冠銀.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "王冠銀.png"; sourceTree = "<group>"; };
+		7114D21320F72D5A00F429BC /* 王冠赤.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "王冠赤.png"; sourceTree = "<group>"; };
+		7114D21420F72D5A00F429BC /* 王冠青.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "王冠青.png"; sourceTree = "<group>"; };
+		7114D21520F72D5B00F429BC /* 王冠銅.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "王冠銅.png"; sourceTree = "<group>"; };
+		7114D21D20F7363200F429BC /* 1328.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1328.png; sourceTree = "<group>"; };
+		7114D21F20F8451300F429BC /* smash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = smash.mp3; sourceTree = "<group>"; };
 		7166A4B220DE503E0000B69F /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = share.png; path = ../../../../Downloads/share.png; sourceTree = "<group>"; };
 		7166A4BB20DF352C0000B69F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7166A4C320DF432A0000B69F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		7166A4C420DF432A0000B69F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		7166A4C520DF43420000B69F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		71A2D48F20F7171300954E38 /* budge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = budge.png; sourceTree = "<group>"; };
 		71A7DAA620DB7797003C1F6A /* ant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ant.png; sourceTree = "<group>"; };
 		71A7DAA820DB7879003C1F6A /* donutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donutButton.png; sourceTree = "<group>"; };
 		71A7DAAA20DB78AD003C1F6A /* antbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = antbutton.png; sourceTree = "<group>"; };
@@ -147,7 +169,9 @@
 				71BA568A20C7C4A8000147A1 /* AppDelegate.swift */,
 				71BA568C20C7C4A8000147A1 /* GameScene.sks */,
 				71BA568E20C7C4A8000147A1 /* Actions.sks */,
+				7114D20B20F7204400F429BC /* SecondScene.sks */,
 				71BA569020C7C4A8000147A1 /* GameScene.swift */,
+				7114D20920F7201800F429BC /* SecondScene.swift */,
 				7166A4BA20DF34BD0000B69F /* Localizable.strings */,
 				71BA569220C7C4A8000147A1 /* GameViewController.swift */,
 				71A7DAA820DB7879003C1F6A /* donutButton.png */,
@@ -157,9 +181,18 @@
 				71A7DAB020DB78E1003C1F6A /* donut2.png */,
 				71A7DAA620DB7797003C1F6A /* ant.png */,
 				7166A4B220DE503E0000B69F /* share.png */,
+				71A2D48F20F7171300954E38 /* budge.png */,
 				71A7DAB220DB78FE003C1F6A /* ant2.png */,
 				71A7DAB420DB7909003C1F6A /* ant3.png */,
 				71A7DAB620DB7912003C1F6A /* ant4.png */,
+				7114D20F20F7288200F429BC /* back.png */,
+				7114D21D20F7363200F429BC /* 1328.png */,
+				7114D21120F72D5800F429BC /* 王冠金.png */,
+				7114D21220F72D5900F429BC /* 王冠銀.png */,
+				7114D21420F72D5A00F429BC /* 王冠青.png */,
+				7114D21320F72D5A00F429BC /* 王冠赤.png */,
+				7114D21520F72D5B00F429BC /* 王冠銅.png */,
+				7114D21F20F8451300F429BC /* smash.mp3 */,
 				71BA569420C7C4A8000147A1 /* Main.storyboard */,
 				71BA569720C7C4A9000147A1 /* Assets.xcassets */,
 				71BA569920C7C4A9000147A1 /* LaunchScreen.storyboard */,
@@ -294,16 +327,26 @@
 			files = (
 				71BA569620C7C4A8000147A1 /* Main.storyboard in Resources */,
 				71A7DAB520DB7909003C1F6A /* ant3.png in Resources */,
+				7114D21E20F7363300F429BC /* 1328.png in Resources */,
+				7114D21620F72D5B00F429BC /* 王冠金.png in Resources */,
 				71BA568D20C7C4A8000147A1 /* GameScene.sks in Resources */,
 				71A7DAAD20DB78BC003C1F6A /* chalk.png in Resources */,
+				7114D20C20F7204400F429BC /* SecondScene.sks in Resources */,
 				71A7DAA920DB7879003C1F6A /* donutButton.png in Resources */,
 				71A7DAAB20DB78AD003C1F6A /* antbutton.png in Resources */,
 				71A7DAB120DB78E2003C1F6A /* donut2.png in Resources */,
+				7114D21920F72D5B00F429BC /* 王冠青.png in Resources */,
+				7114D21720F72D5B00F429BC /* 王冠銀.png in Resources */,
 				71BA569820C7C4A9000147A1 /* Assets.xcassets in Resources */,
+				7114D22020F8451400F429BC /* smash.mp3 in Resources */,
 				71A7DAAF20DB78D6003C1F6A /* donut.png in Resources */,
 				71BA569B20C7C4A9000147A1 /* LaunchScreen.storyboard in Resources */,
+				71A2D49020F7171400954E38 /* budge.png in Resources */,
+				7114D21020F7288200F429BC /* back.png in Resources */,
 				71A7DAB720DB7912003C1F6A /* ant4.png in Resources */,
 				71A7DAB320DB78FF003C1F6A /* ant2.png in Resources */,
+				7114D21A20F72D5B00F429BC /* 王冠銅.png in Resources */,
+				7114D21820F72D5B00F429BC /* 王冠赤.png in Resources */,
 				71A7DAA720DB7798003C1F6A /* ant.png in Resources */,
 				7166A4B820DF34BD0000B69F /* Localizable.strings in Resources */,
 				71BA568F20C7C4A8000147A1 /* Actions.sks in Resources */,
@@ -373,6 +416,7 @@
 			files = (
 				71BA569120C7C4A8000147A1 /* GameScene.swift in Sources */,
 				71BA569320C7C4A8000147A1 /* GameViewController.swift in Sources */,
+				7114D20A20F7201800F429BC /* SecondScene.swift in Sources */,
 				71BA568B20C7C4A8000147A1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
