@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		351FE27DDB0CE6A69F12915A /* Pods_ANTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12FFB18C2531FE24423632D4 /* Pods_ANTUITests.framework */; };
 		7109F9DD20D8CDD40075BCA7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7109F9DC20D8CDD40075BCA7 /* Social.framework */; };
 		7109F9DF20D8CDDB0075BCA7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7109F9DE20D8CDDB0075BCA7 /* Accounts.framework */; };
 		7114D20A20F7201800F429BC /* SecondScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7114D20920F7201800F429BC /* SecondScene.swift */; };
@@ -21,6 +22,8 @@
 		7114D22020F8451400F429BC /* smash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7114D21F20F8451300F429BC /* smash.mp3 */; };
 		7166A4B320DE503E0000B69F /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 7166A4B220DE503E0000B69F /* share.png */; };
 		7166A4B820DF34BD0000B69F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7166A4BA20DF34BD0000B69F /* Localizable.strings */; };
+		7182842E21041E340087A389 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7182842D21041E340087A389 /* GoogleService-Info.plist */; };
+		718284302104379E0087A389 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 7182842F2104379D0087A389 /* title.png */; };
 		71A2D49020F7171400954E38 /* budge.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A2D48F20F7171300954E38 /* budge.png */; };
 		71A7DAA720DB7798003C1F6A /* ant.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A7DAA620DB7797003C1F6A /* ant.png */; };
 		71A7DAA920DB7879003C1F6A /* donutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A7DAA820DB7879003C1F6A /* donutButton.png */; };
@@ -41,6 +44,8 @@
 		71BA569B20C7C4A9000147A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71BA569920C7C4A9000147A1 /* LaunchScreen.storyboard */; };
 		71BA56A620C7C4A9000147A1 /* ANTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BA56A520C7C4A9000147A1 /* ANTTests.swift */; };
 		71BA56B120C7C4A9000147A1 /* ANTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BA56B020C7C4A9000147A1 /* ANTUITests.swift */; };
+		A9DEC24D3C46F5400000A0CF /* Pods_ANTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF0EED1192BA0BBFFA84538 /* Pods_ANTTests.framework */; };
+		CFFD411100EC528C8C54D106 /* Pods_ANT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF22B1882598A69DE743ED68 /* Pods_ANT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +66,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12FFB18C2531FE24423632D4 /* Pods_ANTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ANTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		379964E23EE72A8A3DDE444A /* Pods-ANTUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ANTUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ANTUITests/Pods-ANTUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4DC6671080FCAA25C00C404F /* Pods-ANT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ANT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ANT/Pods-ANT.debug.xcconfig"; sourceTree = "<group>"; };
+		6E818B62E0D239CC08912378 /* Pods-ANTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ANTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ANTTests/Pods-ANTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7109F9DC20D8CDD40075BCA7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7109F9DE20D8CDDB0075BCA7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		7114D20920F7201800F429BC /* SecondScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondScene.swift; sourceTree = "<group>"; };
@@ -78,6 +87,10 @@
 		7166A4C320DF432A0000B69F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		7166A4C420DF432A0000B69F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		7166A4C520DF43420000B69F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7182842B21041AC70087A389 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7182842D21041E340087A389 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7182842F2104379D0087A389 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		71828431210446DA0087A389 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71A2D48F20F7171300954E38 /* budge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = budge.png; sourceTree = "<group>"; };
 		71A7DAA620DB7797003C1F6A /* ant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ant.png; sourceTree = "<group>"; };
 		71A7DAA820DB7879003C1F6A /* donutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donutButton.png; sourceTree = "<group>"; };
@@ -104,6 +117,11 @@
 		71BA56AC20C7C4A9000147A1 /* ANTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ANTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BA56B020C7C4A9000147A1 /* ANTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANTUITests.swift; sourceTree = "<group>"; };
 		71BA56B220C7C4A9000147A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BF0EED1192BA0BBFFA84538 /* Pods_ANTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ANTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE80AF4CE99A7A5260B55A14 /* Pods-ANTUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ANTUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ANTUITests/Pods-ANTUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AF22B1882598A69DE743ED68 /* Pods_ANT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ANT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7269E117B173B0C58F900E4 /* Pods-ANTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ANTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ANTTests/Pods-ANTTests.release.xcconfig"; sourceTree = "<group>"; };
+		CAE88C66C5928E286C215170 /* Pods-ANT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ANT.release.xcconfig"; path = "Pods/Target Support Files/Pods-ANT/Pods-ANT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +131,7 @@
 			files = (
 				7109F9DF20D8CDDB0075BCA7 /* Accounts.framework in Frameworks */,
 				7109F9DD20D8CDD40075BCA7 /* Social.framework in Frameworks */,
+				CFFD411100EC528C8C54D106 /* Pods_ANT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9DEC24D3C46F5400000A0CF /* Pods_ANTTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				351FE27DDB0CE6A69F12915A /* Pods_ANTUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,8 +157,13 @@
 		7109F9DB20D8CDD40075BCA7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71828431210446DA0087A389 /* GoogleToolboxForMac.framework */,
+				7182842B21041AC70087A389 /* FirebaseCore.framework */,
 				7109F9DE20D8CDDB0075BCA7 /* Accounts.framework */,
 				7109F9DC20D8CDD40075BCA7 /* Social.framework */,
+				AF22B1882598A69DE743ED68 /* Pods_ANT.framework */,
+				8BF0EED1192BA0BBFFA84538 /* Pods_ANTTests.framework */,
+				12FFB18C2531FE24423632D4 /* Pods_ANTUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -150,6 +176,7 @@
 				71BA56AF20C7C4A9000147A1 /* ANTUITests */,
 				71BA568820C7C4A8000147A1 /* Products */,
 				7109F9DB20D8CDD40075BCA7 /* Frameworks */,
+				AC3719F350307F27C7A15122 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,10 +220,12 @@
 				7114D21320F72D5A00F429BC /* 王冠赤.png */,
 				7114D21520F72D5B00F429BC /* 王冠銅.png */,
 				7114D21F20F8451300F429BC /* smash.mp3 */,
+				7182842F2104379D0087A389 /* title.png */,
 				71BA569420C7C4A8000147A1 /* Main.storyboard */,
 				71BA569720C7C4A9000147A1 /* Assets.xcassets */,
 				71BA569920C7C4A9000147A1 /* LaunchScreen.storyboard */,
 				71BA569C20C7C4A9000147A1 /* Info.plist */,
+				7182842D21041E340087A389 /* GoogleService-Info.plist */,
 			);
 			path = ANT;
 			sourceTree = "<group>";
@@ -219,6 +248,19 @@
 			path = ANTUITests;
 			sourceTree = "<group>";
 		};
+		AC3719F350307F27C7A15122 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4DC6671080FCAA25C00C404F /* Pods-ANT.debug.xcconfig */,
+				CAE88C66C5928E286C215170 /* Pods-ANT.release.xcconfig */,
+				6E818B62E0D239CC08912378 /* Pods-ANTTests.debug.xcconfig */,
+				B7269E117B173B0C58F900E4 /* Pods-ANTTests.release.xcconfig */,
+				379964E23EE72A8A3DDE444A /* Pods-ANTUITests.debug.xcconfig */,
+				AE80AF4CE99A7A5260B55A14 /* Pods-ANTUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -226,9 +268,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71BA56B520C7C4A9000147A1 /* Build configuration list for PBXNativeTarget "ANT" */;
 			buildPhases = (
+				5E89780DE6D20385F61A427A /* [CP] Check Pods Manifest.lock */,
 				71BA568320C7C4A8000147A1 /* Sources */,
 				71BA568420C7C4A8000147A1 /* Frameworks */,
 				71BA568520C7C4A8000147A1 /* Resources */,
+				5CBEBE834F9BB0A469C4C767 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -327,6 +371,7 @@
 			files = (
 				71BA569620C7C4A8000147A1 /* Main.storyboard in Resources */,
 				71A7DAB520DB7909003C1F6A /* ant3.png in Resources */,
+				718284302104379E0087A389 /* title.png in Resources */,
 				7114D21E20F7363300F429BC /* 1328.png in Resources */,
 				7114D21620F72D5B00F429BC /* 王冠金.png in Resources */,
 				71BA568D20C7C4A8000147A1 /* GameScene.sks in Resources */,
@@ -337,6 +382,7 @@
 				71A7DAB120DB78E2003C1F6A /* donut2.png in Resources */,
 				7114D21920F72D5B00F429BC /* 王冠青.png in Resources */,
 				7114D21720F72D5B00F429BC /* 王冠銀.png in Resources */,
+				7182842E21041E340087A389 /* GoogleService-Info.plist in Resources */,
 				71BA569820C7C4A9000147A1 /* Assets.xcassets in Resources */,
 				7114D22020F8451400F429BC /* smash.mp3 in Resources */,
 				71A7DAAF20DB78D6003C1F6A /* donut.png in Resources */,
@@ -371,6 +417,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5CBEBE834F9BB0A469C4C767 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ANT/Pods-ANT-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ANT/Pods-ANT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E89780DE6D20385F61A427A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ANT-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6C32639CF1DF11861849A787 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -601,6 +685,7 @@
 		};
 		71BA56B620C7C4A9000147A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DC6671080FCAA25C00C404F /* Pods-ANT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -621,6 +706,7 @@
 		};
 		71BA56B720C7C4A9000147A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAE88C66C5928E286C215170 /* Pods-ANT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -641,6 +727,7 @@
 		};
 		71BA56B920C7C4A9000147A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E818B62E0D239CC08912378 /* Pods-ANTTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -661,6 +748,7 @@
 		};
 		71BA56BA20C7C4A9000147A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7269E117B173B0C58F900E4 /* Pods-ANTTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -681,6 +769,7 @@
 		};
 		71BA56BC20C7C4A9000147A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 379964E23EE72A8A3DDE444A /* Pods-ANTUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -700,6 +789,7 @@
 		};
 		71BA56BD20C7C4A9000147A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE80AF4CE99A7A5260B55A14 /* Pods-ANTUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

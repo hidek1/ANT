@@ -162,18 +162,18 @@ class GameScene: SKScene {
         //テクスチャアトラスからボタン作成
 //        let button = SKSpriteNode(texture: SKTextureAtlas(named: "UIParts").textureNamed("button"))
         //イメージからそのままの場合は
-        button.position = CGPoint(x:-261.5, y:-555)
+        button.position = CGPoint(x:-261.5, y:-460)
         button.zPosition = 1
         button.name = "button"
         self.addChild(button)
         
         let button2 = SKSpriteNode(imageNamed: "antbutton.png")
-        button2.position = CGPoint(x:0, y:-555)
+        button2.position = CGPoint(x:0, y:-460)
         button2.zPosition = 1
         button2.name = "button2"
         self.addChild(button2)
         
-        button3.position = CGPoint(x:261.5, y:-555)
+        button3.position = CGPoint(x:261.5, y:-460)
         button3.zPosition = 1
         button3.name = "button3"
         button3.color = UIColor.gray
@@ -401,7 +401,7 @@ class GameScene: SKScene {
             
             if self.atPoint(location).name == "sharebutton" {
                 let text = String(format: NSLocalizedString("share", comment: ""), hours,minutes,secs,antCount)
-                let sampleUrl = NSURL(string: "http://appstore.com/")!
+                let sampleUrl = NSURL(string: "https://itunes.apple.com/jp/app/ant%E3%81%8F%E3%82%93/id1407148714?mt=8")!
 //                let image = UIImage(named: "ant.png")!
                 let items = [text, sampleUrl] as [Any]
                 
